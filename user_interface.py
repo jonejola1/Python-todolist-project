@@ -19,8 +19,7 @@ class UserInterface:
         if action == 1: 
             self.new_task()
             return True
-        elif action == 2:
-            # print("Show all Tasks or Remove selected.")
+        elif action == 2:    
             self.show_all_tasks()
             return True
         elif action == 3:
@@ -35,6 +34,10 @@ class UserInterface:
         DataBase.insert_new_task(task_name, task_desc)
 
     def show_all_tasks(self):
+        if not DataBase.tasks: 
+            print("There are no tasks.")
+            return
+        
         i = 1
         print("Showing all Tasks: \n")
         for task in DataBase.tasks:
