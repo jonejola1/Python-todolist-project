@@ -12,5 +12,5 @@ class TodoTask:
     def get_desc(self):
         return self.description
 
-    def change_description(self, new_desc):
+    def change_desc(self, new_desc):
         self.description = new_desc

@@ -43,4 +43,27 @@ class UserInterface:
         for task in DataBase.tasks:
             print(F"{str(i)}. {task.name}")
             i += 1
-        print("\nEnd of list.")
+        # print("\nEnd of list.\n What task do you want to change: ")
+        user_input = int(input("\nEnd of list.\n What task do you want to change: "))
+        self.task_command(user_input)
+
+
+    def task_command(self, user_input):
+        print(F'Task Name: "{DataBase.tasks[user_input-1].get_name()}" Task Description: "{DataBase.tasks[user_input-1].get_desc()}"')
+        user_action = int(input("\n1. Mark as done \n2. Change description\n3. Delete \n4. Cancel "))
+        if user_action == 1:
+            print("Mark as done")
+            return
+        if user_action == 2:
+            new_desc = input("Enter new description: ")
+            DataBase.tasks[user_input - 1].change_desc(new_desc)
+            print(F'New description changed to "{new_desc}"')
+            return
+        if user_action == 3:
+            print(F'Removing task "{DataBase.tasks[user_input-1].get_name()} from the list.')
+            DataBase.tasks.pop(user_input - 1)
+            print("Task removed!")
+            return
+        if user_action == 4:
+            print("Cancelled")
+            self.task_command(user_input)
