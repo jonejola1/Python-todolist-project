@@ -41,7 +41,7 @@ class UserInterface:
         i = 1
         print("Showing all Tasks: \n")
         for task in DataBase.tasks:
-            print(F"{str(i)}. {task.name}")
+            print(F"{str(i)}. {task.name} [{"✓" if task.done else "X"}]")
             i += 1
         # print("\nEnd of list.\n What task do you want to change: ")
         user_input = int(input("\nEnd of list.\n What task do you want to change: "))
@@ -52,6 +52,8 @@ class UserInterface:
         print(F'Task Name: "{DataBase.tasks[user_input-1].get_name()}" Task Description: "{DataBase.tasks[user_input-1].get_desc()}"')
         user_action = int(input("\n1. Mark as done \n2. Change description\n3. Delete \n4. Cancel "))
         if user_action == 1:
+            print("Mark as done")
+            DataBase.tasks[user_input -1].mark_as_done()
             print("Mark as done")
             return
         if user_action == 2:
